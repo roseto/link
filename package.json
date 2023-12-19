@@ -1,0 +1,15 @@
+{
+  "name": "link",
+  "version": "1.0.0",
+  "description": "Roseto's shortcut linking system",
+  "main": "index.js",
+  "scripts": {
+    "dev": "wrangler pages dev src"
+  },
+  "keywords": [],
+  "author": "Roseto Group",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.21.0"
+  }
+}
