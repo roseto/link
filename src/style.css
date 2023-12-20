@@ -1,3 +1,7 @@
+:root {
+	color-scheme: light dark;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -6,8 +10,8 @@
 }
 
 body {
-	background-color: #282828;
-	color: #e4e4e4;
+	background-color: #fff;
+	color: #282828;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -16,13 +20,20 @@ body {
 	padding: 2rem;
 }
 
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: #282828;
+		color: #fff;
+	}
+}
+
 .logo {
 	width: 128px;
 	height: 128px;
 }
 
 .link, .link a {
-	color: #e4e4e4;
+	color: inherit;
 	opacity: 0.75;
 	text-decoration: none;
 }
@@ -33,4 +44,72 @@ body {
 
 h1 {
 	font-size: 2.5rem;
+}
+
+.links-showcase {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin: 2rem 0;
+	gap: 1rem;
+}
+
+.links-showcase .base,
+.links-container p,
+.links-container a {
+	font-size: 32px;
+	height: 32px;
+	line-height: 32px;
+	display: block;
+}
+
+.links-container .path {
+	color: inherit;
+	text-decoration: none;
+}
+
+.links-container .path:hover {
+	text-decoration: underline;
+}
+
+
+.links-showcase .base {
+	color: #D4668B;
+}
+
+.links-container {
+	position: relative;
+	height: 4rem;
+	overflow: hidden;
+}
+
+.links-container::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 50%, #fff 100%);
+	pointer-events: none;
+	height: 100%;
+	width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+	.links-container::after {
+		background: linear-gradient(180deg, #282828 0%, rgba(0, 0, 0, 0) 50%, #282828 100%);
+	}
+}
+
+.scroller {
+	animation: scroll 15s linear infinite;
+}
+
+@keyframes scroll {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(calc(-100% + 64px));
+	}
 }

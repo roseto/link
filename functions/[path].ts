@@ -1,20 +1,4 @@
-import { createClient } from "@sanity/client";
-
-interface Env {
-	SANITY_PROJECT_ID: string
-	SANITY_TOKEN: string
-}
-
-const getSanity = (SANITY_PROJECT_ID, SANITY_TOKEN) => {
-	return createClient({
-		projectId: SANITY_PROJECT_ID,
-		dataset: "production",
-		useCdn: true,
-		token: SANITY_TOKEN,
-		perspective: "published",
-		apiVersion: "2022-03-07",
-	})
-}
+import { Env, getSanity } from "./index.js";
 
 const exclude_list = [
 	"/style.css"
