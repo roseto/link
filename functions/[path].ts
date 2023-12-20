@@ -1,0 +1,50 @@
+import { createClient } from "@sanity/client";
+
+interface Env {
+	SANITY_PROJECT_ID: string
+	SANITY_TOKEN: string
+}
+
+const getSanity = (SANITY_PROJECT_ID, SANITY_TOKEN) => {
+	return createClient({
+		projectId: SANITY_PROJECT_ID,
+		dataset: "production",
+		useCdn: true,
+		token: SANITY_TOKEN,
+		perspective: "published",
+		apiVersion: "2022-03-07",
+	})
+}
+
+const exclude_list = [
+	"/style.css"
+]
+
+export const onRequest: PagesFunction<Env> = async (ctx) => {
+	const { params } = ctx
+	let { path } = params
+	path = "/" + path;
+
+	
+	if (exclude_list.includes(path)) {
+		return await ctx.next();
+	}
+
+	const sanityClient = getSanity(ctx.env.SANITY_PROJECT_ID, ctx.env.SANITY_TOKEN);
+	const link = await sanityClient.fetch(
+		`*[_type == "link" && path == $path]`,
+		{ path }
+	).then((res) => res[0]);
+	
+	// Redirect to page if it exists
+	if (link) {
+		return new Response(null, {
+			status: 302,
+			headers: {
+				Location: link.url,
+			},
+		});
+	} else {
+		return await ctx.next();
+	}
+}
