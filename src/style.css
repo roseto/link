@@ -117,3 +117,12 @@ h1 {
 		transform: translateY(calc(-100% + 64px));
 	}
 }
+
+footer a {
+	color: #D4668B;
+	text-decoration: none;
+}
+
+footer a:hover {
+	text-decoration: underline;
+}
