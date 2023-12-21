@@ -17,6 +17,9 @@ export const getSanity = (SANITY_PROJECT_ID, SANITY_TOKEN) => {
 }
 
 export const onRequest: PagesFunction<Env> = async (ctx) => {
+	if (!ctx.env.SANITY_PROJECT_ID || !ctx.env.SANITY_TOKEN)
+		return await ctx.next();
+	
 	const sanityClient = getSanity(ctx.env.SANITY_PROJECT_ID, ctx.env.SANITY_TOKEN);
 	const allLinks = await sanityClient.fetch(
 		`*[_type == "link" && public != false] { path, url }`
