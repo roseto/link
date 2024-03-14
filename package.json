@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "wrangler pages dev src"
+    "dev": "wrangler pages dev src",
+    "build": "tsx redirect.ts"
   },
   "keywords": [],
   "author": "Roseto Group",
@@ -16,6 +17,7 @@
   "dependencies": {
     "@cloudflare/workers-types": "^4.20231218.0",
     "@sanity/client": "^6.10.0",
+    "dotenv": "^16.4.5",
     "typescript": "^5.3.3"
   }
 }
