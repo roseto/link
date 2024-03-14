@@ -12,6 +12,7 @@
   "author": "Roseto Group",
   "license": "MIT",
   "devDependencies": {
+    "tsx": "^4.7.1",
     "wrangler": "^3.21.0"
   },
   "dependencies": {
