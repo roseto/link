@@ -16,7 +16,7 @@ const generateRedirects = async () => {
 	);
 
 	for (const link of allLinks) {
-		redirectFileString += `${link.path}	${link.url}	302\n`;
+		redirectFileString += `${link.path} ${link.url} 302\n`;
 	}
 
 	await writeFile("src/_redirects", redirectFileString, (err) => {
